@@ -1,0 +1,13 @@
+
+
+####
+Datos para GIT
+####
+
+1. Ejecutar:
+
+    git init
+
+    -- este comando se ejecuta una sola vez.
+
+    
