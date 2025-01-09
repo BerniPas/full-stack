@@ -1,0 +1,28 @@
+
+/* selector universal: a todos los elementos html del archivo al que lo linkeamos */
+*{
+    font-style: italic;
+}
+
+/* selector de clase class */
+.parrafo{
+    color: red;
+    font-size: 20px;
+}
+
+/* selector de id */
+#comodni{
+    color: green;
+    font-size: 30px;
+}
+
+/* selector por atributo */
+p[title]{
+    color: rgb(143, 18, 120);
+    font-size: 40px;
+}
+
+a[href]{
+    color: rgb(24, 90, 50);
+    font-size: 40px;
+}
