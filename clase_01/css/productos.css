@@ -26,3 +26,34 @@ a[href]{
     color: rgb(24, 90, 50);
     font-size: 40px;
 }
+
+h1, h2, h3 {
+    font-size: 45px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+/* Tipografía linkeada desde Google, agregar link html y código css */
+p{
+    font-family: "Corinthia", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/*  creamos un font-face */
+@font-face{
+    font-family: "Corinthia-Regular";
+    src: url('../fonts/Corinthia-Regular.ttf');
+}
+
+@font-face{
+    font-family: "Corinthia-Bold";
+    src: url('../fonts/Corinthia-Bold.ttf');
+}
+
+
+
+p{
+    font-family: Corinthia-Regular;
+    font-weight: 700;
+    font-style: normal;
+}
