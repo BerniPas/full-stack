@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <link rel="stylesheet" href="formulario.css">
 
+    <title>Formulario con JS</title>
+    <script src="./formulario.js"></script>
+
+    <!-- Agregamos JS en nuestra cabecera del archivo html -->
+    <script>
+
+        //cometario de una sóla línea
+        // es una función por defecto de JS, me abre una ventana en el navegador
+        alert("Hola Mundo");
+
+    </script>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
 
     <nav>
@@ -46,21 +61,32 @@
         </select>
         <br>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="pepe@gmail.com"
-            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+        <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            placeholder="pepe@gmail.com"
+            pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" 
+            required
+            >
+
         <br>
+
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" maxlength="8">
         <br>
         <button type="submit">Enviar Datos</button>
-        <button type="reset">Borrar Datos</button>
+        <button type="reset" onclick="saludar()">Borrar Datos</button>
+        <script>
+            function saludar() {
+                alert("Hola, cambiamos de dirección, nos fuimos a Panamá");
+            }
+        </script>
     </form>
 
 
-
-
-
-
+<!-- Vinculamos el archivo JS con el HTML -->
+<script src="./formulario.js"></script> 
 </body>
 
 </html>
