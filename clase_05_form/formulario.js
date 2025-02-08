@@ -1,4 +1,13 @@
 
+//Las variables las ubicamos en la parte superior del archivo
+let nombre;
+let edadUsuarioEstuadiante;//camelCase: patrón para la declaración de variables	
+let edadDocente;
+let edadPadreEstudiante;
+let mascota = 'Boca Junior'; //esta variabale no está asociada a un tipo de dato, no es una buena práctica
+
+let edad_usuario_estudiante = 25; //snake_case: patrón para la declaración de variables
+
 //Esta es una función que se ejecuta inline en el HTML
 function saludar(){
     console.log('Hola')
@@ -39,7 +48,16 @@ edad = 25;
 
 //IVA = 30; //esto no se puede hacer porque IVA es una constante
 
-console.log(IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
+console.log('El valor del iva en el archivo formulario es: ' + IVA);
 console.log(edad);
 
 
