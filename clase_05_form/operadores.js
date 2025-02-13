@@ -74,6 +74,35 @@ console.log("El resultado de la suma es: " + resultado);
 alert("El resultado de la suma es: " + resultado);
 
 
+//La clase Math es una herramienta para realizar operaciones matemáticas avanzadas
+
+let sorteo = Math.random();
+console.log('El número del sorteo es: ' + sorteo);// sin el redondeo
+
+sorteo = sorteo * 10;// obtenewmos un número entre 0 y 10	
+console.log('El número del sorteo es: ' + sorteo);// sin el redondeo
+
+//redondeamos el número
+sorteo = Math.round(sorteo);
+console.log('El número del sorteo es: ' + sorteo);
+
+
+sorteo = Math.random();
+sorteo = sorteo * 100; // obtenewmos un número entre 0 y 100
+console.log('El número del sorteo es: ' + sorteo);
+
+
+sorteo = Math.round(sorteo);
+console.log('El número del sorteo es: ' + sorteo);
+
+
+
+
+
+
+
+
+
 
 
 
