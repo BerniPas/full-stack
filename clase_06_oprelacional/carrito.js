@@ -17,9 +17,9 @@ if(edad < 18){
 console.log(destino);
 
 if(destino === 'España'){
-    window.location.href = "./espania.html";
+    window.location.href = "./espania.html";// páginas de la aplicación
+}else{
+    window.open("https://www.despegar.com.ar/", "Pasajes" , "_blank", "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes"); // páginas externas
 }
 
-
-//boleto = prompt("Ya tiene el boleto"); //string
 
