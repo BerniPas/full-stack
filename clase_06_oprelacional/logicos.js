@@ -6,6 +6,7 @@ let user;
 let password;// mejor una longitud de 15 caracteres
 
 // Variable con un patrón de password seguro
+// 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 caracter especial
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 
