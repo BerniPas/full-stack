@@ -13,7 +13,7 @@ const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d
 
 
 user = 'pepes'
-password = '1234'
+password = '12345Ma@'
 let authCel = true;
 
 // Validar el patrón de la contraseña
