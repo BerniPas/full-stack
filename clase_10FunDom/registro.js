@@ -85,22 +85,8 @@ function limpiarDatos() {
     let generoFemenino = document.querySelector('#generoFemenino').checked = false;
     let generoMasculino = document.querySelector('#generoMasculino').checked = false;
     let generoOtro= document.querySelector('#generoOtro').checked = false;
-
+    let password = document.getElementById('password').value = '';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //formulario.addEventListener('submit', registroPersona(e));
