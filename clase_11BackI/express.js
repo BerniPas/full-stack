@@ -1,36 +1,33 @@
 
-// Trabajamos con ES5 ==> JS nativo
 
-const http = require('http');//10..
-const pepe = require('node:http');//20..
+// ES5 => JS nativo
 
-// Creamos un servidor
-const server = http.createServer((peticion, respuesta) => {
+// crear variables para el uso de las librerias
+const express = require('express'); // Importamos express
 
-    console.log("=============================================");
+// es una librería nativa de node.js que permite trabajar con el sistema operativo
+// esta no necesitamos inastalarla, ya que viene incluida en node.js
+const os = require('node:os'); // Importamos os
+
+
+// creamos una variable para el uso de express
+const app = express(); // Creamos una instancia de express
+
+// podemos usar express para crear un servidor web
+//1. Primer parametro: la ruta que queremos que escuche el servidor
+//2. Segundo parametro: la función que queremos que ejecute cuando se acceda a esa ruta
+app.get('/', function (req, res) {
+
+    console.log(`Recibimos una petición a esta ruta ${req.url}`); // Imprimimos en consola la ruta que estamos recibiendo
+    res.send('Hola Mundo!'); // Respuesta al cliente
     
-    console.log(peticion);
+}); // Creamos una ruta para el servidor web
 
-    console.log("=============================================");
+app.get('/formulario', (req, res) => {
 
-    console.log("URL: ", peticion.url); // URL de la petición
-    console.log("METHOD: ", peticion.method); // Método de la petición
-    console.log("HEADERS: ", peticion.headers); // Headers de la petición
-    console.log("BODY: ", peticion.body); // Body de la petición
-    
-    console.log("=============================================");
+    console.log(`Recibimos una petición a esta ruta ${req.url}`);
 
-    let ruta = peticion.url; // Ruta de la petición
-
-    // Creamos unas rutas para el usuario
-    switch (ruta) {
-        case '/':
-            console.log("Ruta raíz");
-            respuesta.end('Estas recibiendo página HOME'); // Respuesta al cliente
-            break;
-        case '/formulario':
-            console.log("Ruta formulario");
-            respuesta.end(`<!DOCTYPE html>
+    res.send(`<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -113,29 +110,18 @@ const server = http.createServer((peticion, respuesta) => {
     <script src="./registro.js"></script>
 </body>
 
-</html>`); // Respuesta al cliente
-            break;
-        default:
-            break;
-    }
+</html>`);
+    
+}); // Creamos una ruta para el servidor web
 
-    console.info("todo joya");
+/* app.post(); // Creamos una ruta para el servidor web
 
-}); 
+app.put(); // Creamos una ruta para el servidor web
 
-// Puerto del servidor
-const PORT = 8080; // back
+app.delete(); // Creamos una ruta para el servidor web */
 
-// 3000 react
-// 3306 mysql
-// 4200 angular
-// 9000 apache java
-// 27017 mongodb
-// 5432 postgresql
+const PORT = 8080; // Definimos el puerto en el que queremos que escuche el servidor
 
-// Activamos el servidor para que escuche las peticiones
-server.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`);
+app.listen(PORT, () => { // Iniciamos el servidor
+        console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`); // Imprimimos en consola el puerto en el que estamos escuchando
 });
-
-
