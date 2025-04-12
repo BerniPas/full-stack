@@ -114,12 +114,6 @@ app.get('/formulario', (req, res) => {
     
 }); // Creamos una ruta para el servidor web
 
-/* app.post(); // Creamos una ruta para el servidor web
-
-app.put(); // Creamos una ruta para el servidor web
-
-app.delete(); // Creamos una ruta para el servidor web */
-
 const PORT = 8080; // Definimos el puerto en el que queremos que escuche el servidor
 
 app.listen(PORT, () => { // Iniciamos el servidor
