@@ -2,8 +2,22 @@
 // importamos express
 const express = require('express');
 
+// importamos el uuid para generar un id unico
+const { v4: uuidv4 } = require('uuid');
+
 // si no se muestra el public, importamos el path
 const path = require('path');
+
+// importo el modelo de persona
+const Persona = require('./personaModel'); // 
+
+// importamos mongoose para conectarnos a la base de datos
+const mongoose = require('mongoose');
+
+// conectamos a la base de datos local
+mongoose.connect('mongodb://localhost:27017/pruebaajax')
+  .then(() => console.log('Connectado a la base de datos: pruebaajax'))
+  .catch(err => console.error('Connection error', err));
 
 // ejecutamos express
 // y guardamos la referencia en una variable
@@ -26,16 +40,11 @@ const pruebaMidd = (peticion, respuesta, next) => {
 
 }
 
-// Middleware para manejar errores 500
-server.use((err, req, res, next) => {
-    console.error(err.stack); // Imprime el error en la consola
-    res.status(500).send('<h1>500 - Error interno del servidor</h1>');
-});
-
-
-
 // usamos el middleware
 server.use(pruebaMidd);
+
+// usamos el middleware para parsear el body de la peticion
+server.use(express.json()); // para parsear el body de la peticion
 
 console.log(__dirname);
 console.log(path.join(__dirname, 'public'));
@@ -49,12 +58,61 @@ server.use(express.static('public')); // 1
 // creamos el puerto
 const PORT = 3000;
 
+
+// creamos nuestra primer ruta del POST
+server.post('/recibir', (req, res)=>{
+
+    const { nombre, apellido } = req.body; // destructuramos el body de la peticion
+
+    //const nombre = req.body.nombre;
+    //const apellido = req.body.apellido;
+
+    //console.log(req);
+
+/*     const persona = { 
+        nombre: req.body.nombre, 
+        apellido: req.body.apellido, 
+    } */
+
+    //console.log(persona);
+
+    console.log("========================");
+
+    const OtraPersona = { 
+        nombre, 
+        apellido,
+        //id: uuidv4(), // generamos un id unico para cada persona
+    }
+
+    console.log(OtraPersona);
+    
+    console.log("========================");
+    
+    // imprimimos la peticion en consola    
+    console.log(req.body);
+
+    // guardamos la persona en la base de datos
+    const persona = new Persona(OtraPersona); // creamos una nueva persona con el modelo
+
+    persona.save() // guardamos la persona en la base de datos
+
+    // enviamos la respuesta al cliente
+    res.send(`Hola ${nombre} ${apellido}, tu mensaje fue recibido correctamente`);	    
+});
+
 // creamos un middleware para el 404 = 1
 // Middleware 404 al final de todas tus rutas
 server.use((req, res) => {
     console.log(`Ruta no encontrada: ${req.url}`);
     res.status(404).send('<h1>404 - Página no encontrada</h1>');
 });
+
+// Middleware para manejar errores 500
+server.use((err, req, res, next) => {
+    console.error(err.stack); // Imprime el error en la consola
+    res.status(500).send('<h1>500 - Error interno del servidor</h1>');
+});
+
 
 // creamos una ruta para específica para el 404
 // Manejo de errores 404 (ruta no encontrada)
