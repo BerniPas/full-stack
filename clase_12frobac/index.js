@@ -100,6 +100,24 @@ server.post('/recibir', (req, res)=>{
     res.send(`Hola ${nombre} ${apellido}, tu mensaje fue recibido correctamente`);	    
 });
 
+// creamos una ruta para el GET de personas
+server.get('/api/personas', async (req, res) => {
+    // buscamos todas las personas en la base de datos
+    try {
+        const personas = await Persona.find({});
+
+        // imprimimos la lista de personas en consola
+        console.log(personas);
+        
+        // enviamos la lista de personas al cliente
+        res.json(personas);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al obtener las personas');
+    }
+});
+
+
 // creamos un middleware para el 404 = 1
 // Middleware 404 al final de todas tus rutas
 server.use((req, res) => {

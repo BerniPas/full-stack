@@ -1,4 +1,9 @@
 
+// Variabales 
+
+
+
+// Método para enviar datos al servidor usando XMLHttpRequest
 document.getElementById("btnEnviar").addEventListener("click", function (e) {
     
     e.preventDefault(); // Prevenir comportamiento por defecto del formulario
@@ -42,4 +47,31 @@ document.getElementById("btnEnviar").addEventListener("click", function (e) {
 
     // Limpiar el formulario después de enviar
     formulario.reset();
+});
+
+// Método para recibir datos del servidor usando Ajax
+document.getElementById("obtenerPersonas").addEventListener("click", function (e) {
+    
+    e.preventDefault(); // Prevenir comportamiento por defecto del formulario
+
+    // Crear una instancia de XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+
+    // Configurar la solicitud
+    xhr.open("GET", "http://localhost:3000/api/personas", true); // 
+
+    // Manejar la respuesta del servidor
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log("Respuesta del servidor:", xhr.responseText);
+
+            let resultado = document.getElementById("resultado");
+            resultado.innerHTML = ""; // Limpiar el contenido previo
+            resultado.innerText = xhr.responseText; // Mostrar la respuesta en el elemento con id "resultado"
+        } else {
+            console.error("Error en la solicitud:", xhr.status, xhr.statusText);
+        }
+    };
+    xhr.send();
+
 });
