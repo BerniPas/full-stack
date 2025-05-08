@@ -2,21 +2,23 @@
 // Importamos express router
 const router = require('express').Router(); // importamos express router
 
+// responde a la ruta /
 
-router.get('/', (req, res) => { // creamos una ruta para la página de inicio
-    res.render('index'); // renderizamos la vista index.hbs
-}); 
+// Importamos el controlador de la página
+const { 
+    homeApp, 
+    altaApp, 
+    contactoApp, 
+    nosotrosApp 
+} = require('../controllers/controllerRouter'); // importamos el controlador de la página
 
-router.get('/alta', (req, res) => { // creamos una ruta para la página de alta
-    res.render('alta'); // renderizamos la vista alta.hbs
-}); // cerramos la ruta de alta
 
-router.get('/contacto', (req, res) => { // creamos una ruta para la página de contacto
-    res.render('contacto'); // renderizamos la vista contacto.hbs
-});
+router.get('/', homeApp); 
 
-router.get('/nosotros', (req, res) => { // creamos una ruta para la página de nosotros
-    res.render('nosotros'); // renderizamos la vista nosotros.hbs
-});
+router.get('/alta', altaApp); // cerramos la ruta de alta
+
+router.get('/contacto', contactoApp);
+
+router.get('/nosotros', nosotrosApp);
 
 module.exports = router; // exportamos el router para usarlo en otros archivos

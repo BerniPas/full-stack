@@ -12,7 +12,7 @@ const app = express();
 // 3. Aplicamos middlewares
 app.use(morgan('dev')); // loguea las peticiones en la consola
 app.use(express.json()); // parsea el body de las peticiones a json
-app.use(express.urlencoded({ extended: true })); // parsea el body de las peticiones a json
+app.use(express.urlencoded({ extended: false })); // parsea el body de las peticiones a json
 app.use(express.static(path.join(__dirname, 'public'))); // 2v
 
 // 4. Configuramos el motor de plantillas
@@ -21,12 +21,19 @@ app.set('view engine', 'hbs'); // configuramos el motor de plantillas hbs
 // 5. Configuramos las rutas de hbs
 app.set('views', path.join(__dirname, 'views')); // configuramos la carpeta de vistas
 
+// 5.1 Configuramos la carpeta de parciales
+hbs.registerPartials(path.join(__dirname, 'views/partials'), (err) => { // configuramos la carpeta de parciales
+    if (err) console.log(err); // si hay un error lo mostramos en la consola
+}); // configuramos la carpeta de parciales
+
 //6. Creamos una ruta de prueba/ importamos las rutas
 const pagesRouter = require('./routes/pagesRouter'); // importamos las rutas
+const apiRouter = require('./routes/datosPersonaRouter'); // importamos las rutas de la api
 
 //7. Usamos las rutas
 //app.use('/', require('./routes/pagesRouter')); // usamos las rutas
 app.use('/', pagesRouter); // usamos las rutas
+app.use('/api', apiRouter); // usamos las rutas de la api
 
 // Middleware para errores 
 // Middleware 404 al final de todas tus rutas
