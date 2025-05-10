@@ -19,7 +19,7 @@ const envioDatos = async (req, res) => {
         const nuevoDato = new DatosPersona(datos); // creamos un nuevo objeto de la clase DatosPersona
 
         // guardamos los datos en la base de datos
-        //await nuevoDato.save(); // guardamos el objeto en la base de datos
+        await nuevoDato.save(); // guardamos el objeto en la base de datos
         
         res.status(200).render('respuesta');
 

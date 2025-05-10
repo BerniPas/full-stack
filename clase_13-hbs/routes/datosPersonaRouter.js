@@ -15,3 +15,4 @@ router.post('/', envioDatos);
 //router.get('/info', ); // cerramos la ruta de contacto
 
 module.exports = router; // exportamos el router para usarlo en otros archivos
+

@@ -9,7 +9,8 @@ const {
     homeApp, 
     altaApp, 
     contactoApp, 
-    nosotrosApp 
+    nosotrosApp,
+    traerDatos
 } = require('../controllers/controllerRouter'); // importamos el controlador de la página
 
 
@@ -20,5 +21,7 @@ router.get('/alta', altaApp); // cerramos la ruta de alta
 router.get('/contacto', contactoApp);
 
 router.get('/nosotros', nosotrosApp);
+
+router.get('/traerdatos', traerDatos)
 
 module.exports = router; // exportamos el router para usarlo en otros archivos
