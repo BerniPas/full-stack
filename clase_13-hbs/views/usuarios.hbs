@@ -1,0 +1,22 @@
+
+
+<h1>
+    Traer Datos
+</h1>
+
+<ul>
+    {{#each usuarios}}
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Mensaje</th>
+            </tr>
+            <tr>
+                <td>{{this.nombre}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.mensaje}}</td>
+            </tr>
+        </table>
+    {{/each}}
+</ul>
