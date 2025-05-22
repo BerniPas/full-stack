@@ -5,13 +5,15 @@ const router = require('express').Router(); // importamos express router
 
 // Importamos el controlador de la página
 const {
-    envioDatos,
+    registrarUsers,
     getUsers
 } = require('../controllers/datosPersonaController'); // importamos el controlador de la página
 
-router.post('/', envioDatos);
+router.post('/', registrarUsers);
 
 router.get('/traermongo', getUsers);
+
+//uter.get('/user/:id', getUserId); // cerramos la ruta de contacto
 
 //router.post('/', ); // cerramos la ruta de alta
 

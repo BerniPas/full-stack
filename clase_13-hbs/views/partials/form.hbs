@@ -6,10 +6,20 @@
                 <input type="text" placeholder="Tu Nombre" id="nombre" name="nombre" required>
                 <label for="email">E-mail</label>
                 <input type="email" placeholder="Tu Email" id="email" name="email" required>
+                <label for="password">Contraseña</label>
+                <input type="password" placeholder="Tu Contraseña" id="password" name="password" required>
                 <label for="telefono">Teléfono</label>
                 <input type="tel" placeholder="Tu Teléfono" id="telefono" name="telefono" required>
                 <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
+                <textarea id="mensaje" name="mensaje"></textarea>
             </fieldset>
             <button type="submit" class="boton">Enviar</button>
+
+            <p style="color: red;">
+                {{ mensaje }}
+            </p>
+
+            <div>
+                <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+            </div>
         </form>
