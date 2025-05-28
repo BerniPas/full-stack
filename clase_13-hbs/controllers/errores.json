@@ -1,0 +1,6 @@
+{
+  "errorUser": {
+    "code": 404,
+    "message": "No se encontró el recurso solicitado"
+  }
+}
