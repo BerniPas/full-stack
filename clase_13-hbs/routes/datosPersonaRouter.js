@@ -21,6 +21,7 @@ const validarPost = (req, res, next) => {
 // Importamos el controlador de la página
 const {
     registrarUsers,
+    loginUsers,
     getUsers
 } = require('../controllers/datosPersonaController'); // importamos el controlador de la página
 
@@ -29,13 +30,18 @@ const {
 // valicación de datos con express-validator
 router.post('/', 
     [
-    check('nombre').isString().notEmpty().withMessage('El nombre es obligatorio'), // validamos el nombre
-    check('email').isEmail().withMessage('El email es obligatorio'), // validamos el email
-    check('password').isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'), // validamos la contraseña
-    check('telefono').isString().notEmpty().withMessage('El telefono es obligatorio') // validamos el telefono
+        check('nombre').isString().notEmpty().withMessage('El nombre es obligatorio'), // validamos el nombre
+        check('email').isString().isEmail().withMessage('El email es obligatorio'), // validamos el email
+        check('password').isString().isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'), // validamos la contraseña
+        check('telefono').isString().notEmpty().withMessage('El telefono es obligatorio') // validamos el telefono
     ], 
     registrarUsers
 ); 
+
+
+
+// ruta al login del user
+router.post('/login', loginUsers);
 
 
 router.get('/traermongo', getUsers);

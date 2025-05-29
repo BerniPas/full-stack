@@ -1,0 +1,19 @@
+
+        <form class="formulario" method="POST" action="/api/login">
+            <fieldset>
+                <legend>Login Usuarios</legend>
+                <label for="email">E-mail</label>
+                <input type="email" placeholder="Tu Email" id="email" name="email" required>
+                <label for="password">Contraseña</label>
+                <input type="password" placeholder="Minimo de 8 caracteres" id="password" name="password" required>	
+            </fieldset>
+            <button type="submit" class="boton">Enviar</button>
+
+            <p style="color: red;">
+                {{ mensaje }}
+            </p>
+
+            <div>
+                <p>¿No tienes cuenta? <a href="/contacto">Regístrate</a></p>
+            </div>
+        </form>

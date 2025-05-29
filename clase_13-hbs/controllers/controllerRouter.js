@@ -18,6 +18,11 @@ const nosotrosApp = (req, res) => { // creamos una ruta para la página de nosot
     res.render('nosotros'); // renderizamos la vista nosotros.hbs
 }
 
+const paginaLogin = (req, res) => {
+    // renderizamos la vista de login
+    res.render('login'); // renderizamos la vista de login
+}
+
 
 const traerDatos = (req, res) => { // creamos una ruta para la página de nosotros  
     res.render('traerDatos', {
@@ -31,7 +36,8 @@ module.exports = { // exportamos las rutas para usarlas en otros archivos
     altaApp, // exportamos la ruta de alta
     contactoApp, // exportamos la ruta de contacto
     nosotrosApp, // exportamos la ruta de nosotros
-    traerDatos // exportamos la ruta para traer datos
+    traerDatos, // exportamos la ruta para traer datos
+    paginaLogin // exportamos la ruta de login
 }
 
 

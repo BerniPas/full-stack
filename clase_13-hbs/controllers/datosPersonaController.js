@@ -5,6 +5,11 @@ const DatosPersona = require('../models/datosPersonaModel'); // importamos el mo
 // import el la respuesta del check
 const { validationResult } = require('express-validator'); // importamos la respuesta del check
 
+// agregamos validaciones con JOI
+const Joi = require('joi');
+
+// Librería de JWT
+const jwt = require('jsonwebtoken'); // importamos la librería de JWT
 
 // importamos las validaciones
 const validaciones = require('../helpers/validacionoesUsers'); // importamos las validaciones
@@ -117,8 +122,93 @@ const registrarUsers = async (req, res) => {
     
 }
 
-    
+
+// creamos nuestra función de login para los users
+const loginUsers = async (req, res) => {
+
+    //validamos los datos del body
+    const loginSchema = Joi.object({
+        email: Joi.string().email().required().messages({
+            'string.email': 'El email es obligatorio',
+            'string.empty': 'El email es obligatorio'
+        }),
+        password: Joi.string().min(8).required().messages({
+            'string.min': 'La contraseña debe tener al menos 8 caracteres',
+            'string.empty': 'La contraseña es obligatoria'
+        })
+    });
+
+    const { error } = loginSchema.validate(req.body); // validamos los datos del body
+    if (error) {
+        return res.status(400).render('contacto', {
+            mensaje: error.details[0].message // enviamos el primer mensaje de error
+        });
+    }
+
+    const { email, password } = req.body; // destructuramos el body de la peticion
+
+    console.log(`Email: ${email}`); // mostramos el email en la consola
+    console.log(`Password: ${password}`); // mostramos la contraseña en la consola
+
+    try {
+        // buscamos al usuario por email
+        const usuario = await DatosPersona.findOne({ email }); // buscamos el usuario por email
+
+        console.log(`Usuario: ${usuario}`); // mostramos el usuario en la consola
+        if (!usuario) {
+            return res.status(400).render('contacto', {
+                mensaje: 'Favor registrarse' // enviamos un mensaje de error
+            });
+        }
+
+        //verificar el password
+        const passwordValido = await bcrypt.compare(password, usuario.password); // comparamos la contraseña
+        console.log(`Password valido: ${passwordValido}`); // mostramos si la contraseña es valida en la consola
+
+        if (!passwordValido) {
+            return res.status(400).render('contacto', {
+                mensaje: 'Usuario o contraseña incorrecta' // enviamos un mensaje de error
+            });
+        }
+
+        // Generar el token JWT
+        const token = jwt.sign(
+            { id: usuario._id, email: usuario.email }, // payload del token
+            process.env.JWT_SECRET, // clave secreta del token
+            { expiresIn: '1h' } // tiempo de expiración del token
+        );
+
+
+        console.log(`Token: ${token}`); // mostramos el token en la consola
+        
+
+
+        // Creamos el payload del token
+
+
+        // respondemos con la vista del admin
+        res.status(200).render('admin', {
+            mensaje: `Bienvenido al panel de administración ${usuario.nombre}` // enviamos un mensaje de éxito
+        });
+        
+
+
+
+        
+    } catch (error) {
+        console.error(error); // mostramos el error en la consola
+        return res.status(500).render('contacto', {
+            mensaje: 'Error al iniciar sesión' // enviamos un mensaje de error
+        });
+        
+    }
+
+
+}
+
+
 module.exports = {
     registrarUsers,
+    loginUsers,
     getUsers
 };
