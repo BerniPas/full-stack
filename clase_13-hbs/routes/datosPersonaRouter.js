@@ -22,7 +22,8 @@ const validarPost = (req, res, next) => {
 const {
     registrarUsers,
     loginUsers,
-    getUsers
+    getUsers,
+    deleteUser
 } = require('../controllers/datosPersonaController'); // importamos el controlador de la página
 
 //router.post('/', validarPost, registrarUsers); una opción de middleware para validar el body de la peticion
@@ -46,7 +47,7 @@ router.post('/login', loginUsers);
 
 router.get('/traermongo', getUsers);
 
-//router.get('/user/:id', getUserId); // cerramos la ruta de contacto
+router.delete('/delete/:id', deleteUser); // cerramos la ruta de contacto
 
 //router.post('/editaruser/:_id', ); // cerramos la ruta de alta
 

@@ -25,7 +25,7 @@ const getUsers = async (req, res) => {
     try {
         const usuarios = await DatosPersona.find(); // buscamos todos los datos en la base de datos
 
-     /*    const respuesta = {
+    /*    const respuesta = {
             nombre: usuarios.nombre,
             email: usuarios.email,
             mensaje: usuarios.mensaje
@@ -183,11 +183,9 @@ const loginUsers = async (req, res) => {
         
 
 
-        // Creamos el payload del token
 
-
-        // respondemos con la vista del admin
-        res.status(200).render('admin', {
+        // respondemos con a vista del admin y con el token
+        res.status(200).cookie('Token', token, { httpOnly: true }).render('admin', {
             mensaje: `Bienvenido al panel de administración ${usuario.nombre}` // enviamos un mensaje de éxito
         });
         
@@ -206,9 +204,45 @@ const loginUsers = async (req, res) => {
 
 }
 
+// eliminamos el usuario por id
+const deleteUser = async (req, res) => {
+
+    // recuperamos el id del usuario
+    const { id } = req.params; // obtenemos el id del usuario
+
+    console.log(`ID: ${id}`); // mostramos el id en la consola
+    
+
+    try {
+        // buscamos el usuario por id
+        const usuario = await DatosPersona.findById(id);
+
+        console.log(`Usuario: ${usuario}`); // mostramos el usuario en la consola
+
+        if (!usuario) {
+            return res.status(404).render('login', {
+                mensaje: 'Usuario no encontrado' // enviamos un mensaje de error
+            });
+        }
+
+        // eliminamos el usuario
+        await DatosPersona.findByIdAndDelete(id);
+        res.status(200).render('login', {
+            mensaje: 'Usuario eliminado correctamente' // enviamos un mensaje de éxito
+        });
+
+    } catch (error) {
+        console.error(error); // mostramos el error en la consola
+        res.status(500).render('login', {
+            mensaje: 'Error al eliminar el usuario' // enviamos un mensaje de error
+        });
+    }
+}
+
 
 module.exports = {
     registrarUsers,
     loginUsers,
-    getUsers
+    getUsers,
+    deleteUser
 };
