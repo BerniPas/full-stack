@@ -1,6 +1,12 @@
-// importamos el modelo de datosPersona
+// traemos las variables de entorno
+const dotenv = require("dotenv");
+dotenv.config();
 
+// importamos el modelo de datosPersona
 const DatosPersona = require('../models/datosPersonaModel'); // importamos el modelo de datosPersona
+
+// librería para envío de mail
+const nodemailer = require("nodemailer");
 
 // import el la respuesta del check
 const { validationResult } = require('express-validator'); // importamos la respuesta del check
@@ -25,16 +31,16 @@ const getUsers = async (req, res) => {
     try {
         const usuarios = await DatosPersona.find(); // buscamos todos los datos en la base de datos
 
-    /*    const respuesta = {
-            nombre: usuarios.nombre,
-            email: usuarios.email,
-            mensaje: usuarios.mensaje
-        } */
+        /*    const respuesta = {
+                nombre: usuarios.nombre,
+                email: usuarios.email,
+                mensaje: usuarios.mensaje
+            } */
 
         console.log(usuarios); // mostramos los datos en la consola
-        
-        res.status(200).render('usuarios',  {
-            usuarios:usuarios //enderizamos la vista usuarios.hbs y le pasamos los datos
+
+        res.status(200).render('usuarios', {
+            usuarios: usuarios //enderizamos la vista usuarios.hbs y le pasamos los datos
         }); // enviamos los datos en formato json
     } catch (error) {
         console.error(error); // mostramos el error en la consola
@@ -70,56 +76,86 @@ const registrarUsers = async (req, res) => {
     console.log(datos._id); // mostramos los datos en la consola
 
 
-   //onst validarCorrecto = validaciones.validarEmail(email, password, ); // validamos el email
- // validaciones.validarPassword(password); // validamos la contraseña
-    
+    //onst validarCorrecto = validaciones.validarEmail(email, password, ); // validamos el email
+    // validaciones.validarPassword(password); // validamos la contraseña
+
     // Validamos los datos
     if (!nombre || !email || !password || !telefono) {
-        return res.status(400).render('contacto', { 
+        return res.status(400).render('contacto', {
             mensaje: respuesta.errorUsers // enviamos un mensaje de error    
         }); // enviamos un mensaje de error
     }
-    
+
     try {
-        
-            // Validamos el email unico
-            const emailExistente = await DatosPersona.find({ email })//scamos el email en la base de datos
-        
-            console.log(`Email: ${emailExistente}`); // mostramos el email en la consola
-            
-        
-            if (emailExistente.length > 0) {
-                return res.status(400).render('contacto', {
-                    mensaje: errorUsers // enviamos un mensaje de error
-                });
-            }
-        
-            console.log(datos); // mostramos los datos en la consola
+
+        // Validamos el email unico
+        const emailExistente = await DatosPersona.find({ email })//scamos el email en la base de datos
+
+        console.log(`Email: ${emailExistente}`); // mostramos el email en la consola
+
+
+        if (emailExistente.length > 0) {
+            return res.status(400).render('contacto', {
+                mensaje: errorUsers // enviamos un mensaje de error
+            });
+        }
+
+        console.log(datos); // mostramos los datos en la consola
 
         // Encriptar la contraseña
         const salt = await bcrypt.genSalt(10);
 
         console.log(`Salt: ${salt}`); // mostramos el salt en la consola
-        
+
 
         datos.password = await bcrypt.hash(password, salt);
 
         console.log(`Password: ${datos.password}`); // mostramos la contraseña en la consola
-        
+
 
         const nuevoDato = new DatosPersona(datos); // creamos un nuevo objeto de la clase DatosPersona
 
         // guardamos los datos en la base de datos
         await nuevoDato.save(); // guardamos el objeto en la base de datos
-        
+
+        //enviar un email de bienvenida
+        const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true, // true for 465, false for other ports
+            auth: {
+                user: process.env.GOOGLE_CLIENT,
+                pass: process.env.GOOGLE_SECRET,
+            },
+        });
+
+        // Wrap in an async IIFE so we can use await.
+        (async () => {
+            const info = await transporter.sendMail({
+                from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
+                to: `${email}`, // list of receivers
+                subject: "Hello ✔", // Subject line
+                text: "Hello world?", // plain text body
+                html: `<h1>Gracias ${nombre} por registrarte en nuestra app!</h1> <br>
+                <img src="https://static.educacionit.com/educacionit/assets/imagotype-it-fill-v2-color.svg">
+                    <a href="https://www.educacionit.com/" target= "_blank">Visitanos</a>`,
+            });
+
+            console.log("Message sent:", info.messageId);
+        })();
+
+/*         ((email, nombre)=> {
+
+        })(); */
+
         res.status(200).render('respuesta');
 
     } catch (error) {
-        
+
         console.error(error); // mostramos el error en la consola
         res.status(500).send('Error al guardar los datos'); // enviamos un mensaje de error
     }
-    
+
 }
 
 
@@ -180,7 +216,7 @@ const loginUsers = async (req, res) => {
 
 
         console.log(`Token: ${token}`); // mostramos el token en la consola
-        
+
 
 
 
@@ -188,17 +224,17 @@ const loginUsers = async (req, res) => {
         res.status(200).cookie('Token', token, { httpOnly: true }).render('admin', {
             mensaje: `Bienvenido al panel de administración ${usuario.nombre}` // enviamos un mensaje de éxito
         });
-        
 
 
 
-        
+
+
     } catch (error) {
         console.error(error); // mostramos el error en la consola
         return res.status(500).render('contacto', {
             mensaje: 'Error al iniciar sesión' // enviamos un mensaje de error
         });
-        
+
     }
 
 
@@ -211,7 +247,7 @@ const deleteUser = async (req, res) => {
     const { id } = req.params; // obtenemos el id del usuario
 
     console.log(`ID: ${id}`); // mostramos el id en la consola
-    
+
 
     try {
         // buscamos el usuario por id

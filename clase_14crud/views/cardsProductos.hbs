@@ -7,10 +7,10 @@
 <div class="container mt-5 d-flex flex-wrap">
 
     {{#each producto}}
-        <div class="card m-3" style="width: 18rem;">
+        <div class="card m-3" style="width: 25rem;">
             <input type="text" value="{{_id}}" disabled>
                 <img src={{ imagen }} class="card-img-top w-100" alt="imagen del producto">
-            <div class="card-body">
+            <div class="card-body text-center">
                 <h5 class="card-title">{{ nombre }}</h5>
                 <p class="card-text">{{ descripcion }}</p>
                 <a href="/product/detalle/{{_id}}" class="btn btn-primary">Ver Producto</a>
@@ -25,6 +25,15 @@
                     Eliminar Producto
                 </button>
             </form>
+
+            {{!-- boton de pago con mercado pago de prueba --}}
+            
+                <button class="btn btn-success" type="submit">
+                    <a href="https://mpago.la/2xo7kvX" target="_blank">
+                        Comprar
+                    </a>
+                </button>
+            
 
         </div>
     {{/each}}
