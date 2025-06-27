@@ -1,5 +1,6 @@
 
 // backend en ES6
+//const express = require('express'); // importamos express
 import express from 'express'; // importamos express
 import mongoose from 'mongoose'; // importamos mongoose
 
