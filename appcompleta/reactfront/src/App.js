@@ -10,6 +10,7 @@ import Footer from "./Componentes/Footer";
 
 /* admin de rutas */
 import { Routes, Route } from 'react-router-dom'
+import Personajes from "./Componentes/Personajes";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/alta" element={<Alta />}></Route>
         <Route path="/contacto" element={<Contacto />}></Route>
         <Route path="/productos" element={<Productos />}></Route>
+        <Route path="/personaje" element={<Personajes />}></Route>
       </Routes>
 
       <Footer />

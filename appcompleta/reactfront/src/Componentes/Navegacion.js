@@ -40,8 +40,8 @@ const Navegacion = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to='/productos'>
-                            Productos
+                        <Link to='/personaje'>
+                            Personajes
                         </Link>
                     </li>
                 </ul>

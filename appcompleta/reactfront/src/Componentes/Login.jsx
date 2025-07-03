@@ -2,7 +2,7 @@
 import "../css/SContacto.css"
 import axios from "axios"
 import Swal from "sweetalert2";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useState } from "react"
 
@@ -55,8 +55,7 @@ const Login = () => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!",
-                //footer: <Link to="/nosotros">Registrarse</Link>
+                text: "Something went wrong!"
             }).then(() => {
                 navigate("/login");
             })
