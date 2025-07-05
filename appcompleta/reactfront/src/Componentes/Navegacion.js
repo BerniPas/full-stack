@@ -44,6 +44,11 @@ const Navegacion = () => {
                             Personajes
                         </Link>
                     </li>
+                    <li>
+                        <Link to='/props'>
+                            Props
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>

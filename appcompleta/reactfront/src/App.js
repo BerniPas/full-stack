@@ -7,6 +7,7 @@ import Alta from "./Componentes/Alta";
 import Contacto from "./Componentes/Contacto";
 import Productos from "./Componentes/Productos";
 import Footer from "./Componentes/Footer";
+import PadreUno from "./Componentes/PadreUno";
 
 /* admin de rutas */
 import { Routes, Route } from 'react-router-dom'
@@ -26,6 +27,7 @@ function App() {
         <Route path="/alta" element={<Alta />}></Route>
         <Route path="/contacto" element={<Contacto />}></Route>
         <Route path="/productos" element={<Productos />}></Route>
+        <Route path="/props" element={<PadreUno />}></Route>
         <Route path="/personaje" element={<Personajes />}></Route>
       </Routes>
 
