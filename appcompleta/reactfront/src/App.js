@@ -12,6 +12,7 @@ import PadreUno from "./Componentes/PadreUno";
 /* admin de rutas */
 import { Routes, Route } from 'react-router-dom'
 import Personajes from "./Componentes/Personajes";
+import ChatIA from "./Componentes/ChatIA";
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         <Route path="/productos" element={<Productos />}></Route>
         <Route path="/props" element={<PadreUno />}></Route>
         <Route path="/personaje" element={<Personajes />}></Route>
+        <Route path="/chat" element={<ChatIA />}></Route>
+
       </Routes>
 
       <Footer />

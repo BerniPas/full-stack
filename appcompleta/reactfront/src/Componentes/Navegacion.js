@@ -49,6 +49,11 @@ const Navegacion = () => {
                             Props
                         </Link>
                     </li>
+                    <li>
+                        <Link to='/chat'>
+                            Chat
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>
