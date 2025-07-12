@@ -1,11 +1,10 @@
-
 import '../css/chat.css';
 
 const ChatIA = () => {
     return (
         <>
-            <div class="container propia">
-                <div class="text-center mt-5">
+            <div className="container propia">
+                <div className="text-center mt-5">
                     <h1>
                         Chatbot de Aprendizaje Web
                     </h1>
@@ -16,10 +15,11 @@ const ChatIA = () => {
                 </div>
             </div>
 
-            <div class="container mt-5 mb-5">
+            <div className="container mt-5 mb-5">
                 <iframe 
                     className="chat" 
                     src="https://www.chatbase.co/chatbot-iframe/B_I-FCxwlYAp_atE6NFdi"  
+                    title="Chatbot de Aprendizaje Web"
                 />
             </div>
         </>
