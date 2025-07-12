@@ -1,9 +1,12 @@
 
 import "../css/SNosotros.css"
+import Tarjetas from "./Tarjetas"
 
 /* Usamos dos hooks, useState y useEffect */
 import { useEffect, useState } from "react";
 
+
+/* es el componente padre, que envía una props a su hijo Tarjetas */
 const Personajes = () => {
 
     const [personaje, setPersonaje] = useState([]);
@@ -27,13 +30,10 @@ const Personajes = () => {
     return (
         <main class="NMain">
             <div class="Tittle">
-                <h1 class="TittleAnimation">About Us</h1>
+                <h1 class="TittleAnimation">Personajes de Ape de Terceros</h1>
             </div>
             <section class="AboutUs">
-                <div class="AboutUsContent">
-                    <h2>Our Mission</h2>
-                    <p>At CLEAN SKIN, our mission is to provide high-quality, eco-friendly skincare products that enhance your natural beauty and contribute to a sustainable world. We believe in the power of nature and strive to use organic ingredients that are gentle on your skin and kind to the environment.</p>
-                </div>
+                <Tarjetas personajes={personaje} />
             </section>
             <button type="button" style={{width: "250px"}} onClick={imprimir}>
                 Imprimir Datos

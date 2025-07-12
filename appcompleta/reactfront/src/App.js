@@ -13,6 +13,7 @@ import PadreUno from "./Componentes/PadreUno";
 import { Routes, Route } from 'react-router-dom'
 import Personajes from "./Componentes/Personajes";
 import ChatIA from "./Componentes/ChatIA";
+import Error from "./Componentes/Error";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/props" element={<PadreUno />}></Route>
         <Route path="/personaje" element={<Personajes />}></Route>
         <Route path="/chat" element={<ChatIA />}></Route>
+        <Route path="/*" element={<Error />}></Route>
 
       </Routes>
 

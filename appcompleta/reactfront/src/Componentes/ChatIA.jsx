@@ -19,7 +19,8 @@ const ChatIA = () => {
             <div class="container mt-5 mb-5">
                 <iframe 
                     className="chat" 
-                    src="https://www.chatbase.co/chatbot-iframe/B_I-FCxwlYAp_atE6NFdi"/>
+                    src="https://www.chatbase.co/chatbot-iframe/B_I-FCxwlYAp_atE6NFdi"  
+                />
             </div>
         </>
     )
