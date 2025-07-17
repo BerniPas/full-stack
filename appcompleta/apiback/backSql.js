@@ -1,6 +1,7 @@
 import express from "express";
 import mysql from "mysql2";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 
 // Opcional Knex para manejar las consultas SQL de forma más sencilla
@@ -8,7 +9,9 @@ import knex from "knex";
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); //lee y responde en formato JSON
+app.use(express.urlencoded({ extended: true })); //para manejar datos de formularios
+app.use(cors()); //para permitir peticiones desde otros dominios
 
 const db = mysql.createConnection({
     host: process.env.SQL_HOST,

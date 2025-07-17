@@ -14,6 +14,7 @@ import { Routes, Route } from 'react-router-dom'
 import Personajes from "./Componentes/Personajes";
 import ChatIA from "./Componentes/ChatIA";
 import Error from "./Componentes/Error";
+import CrudItems from "./Componentes/CrudItems";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/props" element={<PadreUno />}></Route>
         <Route path="/personaje" element={<Personajes />}></Route>
         <Route path="/chat" element={<ChatIA />}></Route>
+        <Route path="/sql" element={<CrudItems />}></Route>
         <Route path="/*" element={<Error />}></Route>
 
       </Routes>

@@ -54,6 +54,11 @@ const Navegacion = () => {
                             Chat
                         </Link>
                     </li>
+                    <li>
+                        <Link to='/sql'>
+                            SQL
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>
