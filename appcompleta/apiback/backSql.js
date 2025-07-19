@@ -86,6 +86,26 @@ app.get("/items", async (req, res) => {
     });
 });
 
+// Funciòn para buscar un item por ID
+app.get("/items/:id", async (req, res) => {
+    const { id } = req.params;
+
+    // Creamos la consulta SQL para obtener un item por ID
+    const query = "SELECT * FROM productos WHERE idProductos = ?";
+
+    // Ejecutamos la consulta
+    db.query(query, [id], (err, results) => {
+        
+        if (err) {
+            console.error("📚 Error fetching item:", err);
+            res.status(500).json({ error: "Internal server error" });
+            return;
+        }
+        res.status(200).json(results[0]);
+    });
+});
+
+
 // Update
 app.put("/items/:id", async (req, res) => {
     // Obtenemos el id del item a actualizar y los nuevos datos
